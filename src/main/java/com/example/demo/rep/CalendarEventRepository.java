@@ -27,4 +27,6 @@ public interface CalendarEventRepository extends JpaRepository<CalendarEvent, Lo
             "FROM CalendarEvent ce " +
             "INNER JOIN User u ON ce.username = u.username")
     List<CalenderEventDTO> getCalendarEvents();
+    
+    //test
 }
