@@ -38,9 +38,9 @@ public class ACMLoanServiceImpl implements ACMLoanService {
 	    elasticsearchRestTemplate.save(newData, indexCoordinates);
 
 	    if (indexExists) {
-	        System.out.println(indexName + " updated with new data");
+	        System.out.println(indexName + " updated with new data : "+ newData.size() + " Records added");
 	    } else {
-	        System.out.println("New index " + indexName + " created with data");
+	        System.out.println("New index " + indexName + " created with data : "+ newData.size() + " Records added");
 	    }
 	}
 

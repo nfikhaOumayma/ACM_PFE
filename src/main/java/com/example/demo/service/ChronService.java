@@ -13,8 +13,8 @@ import com.example.demo.rep.LoanRepository;
 public class ChronService {
 
 	private final ACMLoanService loanService;
-	private final LoanRepository Loanrep;
-	private final CollectionRepository Collectionrep;
+	private final LoanRepository loanrep;
+	private final CollectionRepository collectionrep;
 	private final CalendarEventRepository calenderEvent;
 
 
@@ -24,8 +24,8 @@ public class ChronService {
 
 		super();
 		this.loanService = loanService;
-		Loanrep = loanrep;
-		Collectionrep = collectionrep;
+		this.loanrep = loanrep;
+		this.collectionrep = collectionrep;
 		this.calenderEvent = calenderEvent;
 	}
 
@@ -35,8 +35,8 @@ public class ChronService {
 	public void startChronometer() {
 		System.out.println("Scheduled task started at: " + LocalDateTime.now());
 
-		loanService.Indexation("totalloans", () -> Loanrep.loanIndex());
-		loanService.Indexation("acmcollection", () -> Collectionrep.getCollections() );
-		loanService.Indexation("calenderevent", () -> calenderEvent.getCalendarEvents());
+		loanService.Indexation("totalloans", () -> loanrep.loanIndex());
+		loanService.Indexation("acmcollection", () -> collectionrep.getCollections());
+		loanService.Indexation("acmclenderevent", () -> calenderEvent.getCalendarEvents());
 	}
 }

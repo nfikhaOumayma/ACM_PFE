@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.Date;
 
 import org.joda.time.LocalDate;
@@ -76,7 +78,7 @@ public class CollectionDTO {
 
 	private String statutWorkflow;
 
-	private Date date;
+	private String date;
 
 	public CollectionDTO(Long id, String typeCustomer, Long customerIdExtern, String accountNumber,
 			String productDescription, String customerName, String branchDescription,
@@ -119,7 +121,8 @@ public class CollectionDTO {
 		this.statutLibelle = statutLibelle;
 		this.statutLibelleDone = statutLibelleDone;
 		this.statutWorkflow = statutWorkflow;
-		this.date = date;
+		this.date = (new LocalDate()).toString("yyyy-MM-dd");
+		//this.date = date;
 	}
 
 }
