@@ -2,6 +2,8 @@ package com.example.demo.dto;
 
 import java.util.Date;
 
+import org.joda.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +22,7 @@ public class acmCollectionDTO {
 	    private String branchDescription;
 	    private String owner;
 	    private String statut;
-	    private Date date;
+	    private String date;
 		public acmCollectionDTO(String customerName, String productDescription,
 				String statutLibelle, String loanOfficer, String branchDescription, String owner,
 				String statut, Date date) {
@@ -33,7 +35,6 @@ public class acmCollectionDTO {
 			this.branchDescription = branchDescription;
 			this.owner = owner;
 			this.statut = statut;
-			this.date = date;
-		}
+			this.date = (new LocalDate()).toString("yyyy-MM-dd");		}
 	    
 }

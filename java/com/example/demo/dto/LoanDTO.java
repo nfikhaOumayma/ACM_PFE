@@ -2,8 +2,11 @@ package com.example.demo.dto;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
+
+import org.joda.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +21,7 @@ public class LoanDTO {
 	    private int statut;
 	    private String portfolioDescription;
 	    private BigDecimal applyAmountTotal;
-	    private Date applyDate;
+	    private String applyDate;
 	    private BigDecimal approvelAmount;
 	    private BigDecimal apr;
 	    private String branchDescription;
@@ -26,7 +29,7 @@ public class LoanDTO {
 	    private String productDescription;
 	    private String loanReasonDescription;
 		private Long idIbLoan;
-		private Date date;
+		private String date;
 		public LoanDTO(String accountNumberExtern, int statut, String portfolioDescription,
 				BigDecimal applyAmountTotal, Date applyDate, BigDecimal approvelAmount,
 				BigDecimal apr, String branchDescription, String loanApplicationStatus,
@@ -34,11 +37,13 @@ public class LoanDTO {
 				Date date) {
 
 			super();
+		    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
 			this.accountNumberExtern = accountNumberExtern;
 			this.statut = statut;
 			this.portfolioDescription = portfolioDescription;
 			this.applyAmountTotal = applyAmountTotal;
-			this.applyDate = applyDate;
+			this.applyDate = dateFormat.format(applyDate);
 			this.approvelAmount = approvelAmount;
 			this.apr = apr;
 			this.branchDescription = branchDescription;
@@ -46,7 +51,7 @@ public class LoanDTO {
 			this.productDescription = productDescription;
 			this.loanReasonDescription = loanReasonDescription;
 			this.idIbLoan = idIbLoan;
-			this.date = date;
+			this.date = (new LocalDate()).toString("yyyy-MM-dd");
 		}
 		
 

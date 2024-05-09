@@ -36,7 +36,7 @@ public class CollectionDTO {
 
 	private String loanOfficer;
 
-	private Date firstUnpaidInstallment;
+	private String firstUnpaidInstallment;
 
 	private BigDecimal unpaidAmount;
 
@@ -58,7 +58,7 @@ public class CollectionDTO {
 
 	private Integer idLoanExtern;
 
-	private Date availableDate;
+	private String availableDate;
 
 	private String owner;
 
@@ -91,6 +91,8 @@ public class CollectionDTO {
 			String statutLibelle, String statutLibelleDone, String statutWorkflow, Date date) {
 
 		super();
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
 		this.id = id;
 		this.typeCustomer = typeCustomer;
 		this.customerIdExtern = customerIdExtern;
@@ -100,7 +102,7 @@ public class CollectionDTO {
 		this.branchDescription = branchDescription;
 		this.amount = amount;
 		this.loanOfficer = loanOfficer;
-		this.firstUnpaidInstallment = firstUnpaidInstallment;
+		this.firstUnpaidInstallment = dateFormat.format(firstUnpaidInstallment);
 		this.unpaidAmount = unpaidAmount;
 		this.lateDays = lateDays;
 		this.numberOfUnpaidInstallment = numberOfUnpaidInstallment;
@@ -111,7 +113,7 @@ public class CollectionDTO {
 		this.currencySymbol = currencySymbol;
 		this.currencyDecimalPlaces = currencyDecimalPlaces;
 		this.idLoanExtern = idLoanExtern;
-		this.availableDate = availableDate;
+		this.availableDate =dateFormat.format(availableDate) ;
 		this.owner = owner;
 		this.ownerName = ownerName;
 		this.groupOwner = groupOwner;

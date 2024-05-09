@@ -2,6 +2,8 @@ package com.example.demo.dto;
 
 import java.util.Date;
 
+import org.joda.time.LocalDate;
+
 
 public class CalenderEventDTO {
 
@@ -13,7 +15,7 @@ public class CalenderEventDTO {
 	    private String category;
 	    private String owner;
 	    private String branchDescription;
-	    private Date date;
+	    private String date;
 
 	    public CalenderEventDTO(String libelleEvent, String statut, Date dateLastUpdate, Date dateFin,
 	                                int retardJour, String category, String owner, String branchDescription,Date date) {
@@ -25,6 +27,6 @@ public class CalenderEventDTO {
 	        this.category = category;
 	        this.owner = owner;
 	        this.branchDescription = branchDescription;
-	        this.date=date;
+			this.date = (new LocalDate()).toString("yyyy-MM-dd");
 	    }
 }
