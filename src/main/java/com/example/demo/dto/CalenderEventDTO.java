@@ -4,7 +4,13 @@ import java.util.Date;
 
 import org.joda.time.LocalDate;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CalenderEventDTO {
 
 	 private String libelleEvent;
