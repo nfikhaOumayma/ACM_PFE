@@ -1,58 +1,52 @@
 package com.example.demo.dto;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
 
 import org.joda.time.LocalDate;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class LoanDTO {
-	    private String accountNumberExtern;
-	    private int statut;
-	    private String portfolioDescription;
-	    private BigDecimal applyAmountTotal;
-	    private String applyDate;
-	    private BigDecimal approvelAmount;
-	    private BigDecimal apr;
-	    private String branchDescription;
-	    private String loanApplicationStatus;
-	    private String productDescription;
-	    private String loanReasonDescription;
-		private Long idIbLoan;
-		private String date;
-		public LoanDTO(String accountNumberExtern, int statut, String portfolioDescription,
-				BigDecimal applyAmountTotal, Date applyDate, BigDecimal approvelAmount,
-				BigDecimal apr, String branchDescription, String loanApplicationStatus,
-				String productDescription, String loanReasonDescription, Long idIbLoan,
-				Date date) {
 
-			super();
-		    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private String accountNumberExtern;
+    
+    @Field(type = FieldType.Text)
+    private String statut;
+    
+    private String productDescription;
+    
+	@Field(type = FieldType.Date)
+    private Date applyDate;
+	
+    private String portfolioDescription;
+    private BigDecimal applyAmountTotal;
+    private BigDecimal approvelAmount;
+    private String loanReasonDescription;
+    private String branchDescription;
+    private BigDecimal apr;
+    private String loanApplicationStatus;
+    private String date;
 
-			this.accountNumberExtern = accountNumberExtern;
-			this.statut = statut;
-			this.portfolioDescription = portfolioDescription;
-			this.applyAmountTotal = applyAmountTotal;
-			this.applyDate = dateFormat.format(applyDate);
-			this.approvelAmount = approvelAmount;
-			this.apr = apr;
-			this.branchDescription = branchDescription;
-			this.loanApplicationStatus = loanApplicationStatus;
-			this.productDescription = productDescription;
-			this.loanReasonDescription = loanReasonDescription;
-			this.idIbLoan = idIbLoan;
-			this.date = (new LocalDate()).toString("yyyy-MM-dd");
-		}
-		
+    public LoanDTO(String accountNumberExtern, String statut, String productDescription, Date applyDate,
+                   String portfolioDescription, BigDecimal applyAmountTotal, BigDecimal approvelAmount,
+                   String loanReasonDescription, String branchDescription, BigDecimal apr,
+                   String loanApplicationStatus, Date date) {
+        this.accountNumberExtern = accountNumberExtern;
+        this.statut = statut;
+        this.productDescription = productDescription;
+        this.applyDate = applyDate;
+        this.portfolioDescription = portfolioDescription;
+        this.applyAmountTotal = applyAmountTotal;
+        this.approvelAmount = approvelAmount;
+        this.loanReasonDescription = loanReasonDescription;
+        this.branchDescription = branchDescription;
+        this.apr = apr;
+        this.loanApplicationStatus = loanApplicationStatus;
+		this.date = (new LocalDate()).toString("yyyy-MM-dd");
 
+    }
 }

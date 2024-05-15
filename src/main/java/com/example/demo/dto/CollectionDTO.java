@@ -1,14 +1,12 @@
 package com.example.demo.dto;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
+
 import java.util.Date;
 
 import org.joda.time.LocalDate;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,8 +33,9 @@ public class CollectionDTO {
 	private BigDecimal amount;
 
 	private String loanOfficer;
-
-	private String firstUnpaidInstallment;
+	
+	@Field(type = FieldType.Date)
+	private Date firstUnpaidInstallment;
 
 	private BigDecimal unpaidAmount;
 
@@ -57,8 +56,9 @@ public class CollectionDTO {
 	private Integer currencyDecimalPlaces;
 
 	private Integer idLoanExtern;
-
-	private String availableDate;
+	
+	@Field(type = FieldType.Date)
+	private Date availableDate;
 
 	private String owner;
 
@@ -91,7 +91,6 @@ public class CollectionDTO {
 			String statutLibelle, String statutLibelleDone, String statutWorkflow, Date date) {
 
 		super();
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 		this.id = id;
 		this.typeCustomer = typeCustomer;
@@ -102,7 +101,7 @@ public class CollectionDTO {
 		this.branchDescription = branchDescription;
 		this.amount = amount;
 		this.loanOfficer = loanOfficer;
-		this.firstUnpaidInstallment = dateFormat.format(firstUnpaidInstallment);
+		this.firstUnpaidInstallment = firstUnpaidInstallment;
 		this.unpaidAmount = unpaidAmount;
 		this.lateDays = lateDays;
 		this.numberOfUnpaidInstallment = numberOfUnpaidInstallment;
@@ -113,7 +112,7 @@ public class CollectionDTO {
 		this.currencySymbol = currencySymbol;
 		this.currencyDecimalPlaces = currencyDecimalPlaces;
 		this.idLoanExtern = idLoanExtern;
-		this.availableDate =dateFormat.format(availableDate) ;
+		this.availableDate = availableDate;
 		this.owner = owner;
 		this.ownerName = ownerName;
 		this.groupOwner = groupOwner;
@@ -124,7 +123,6 @@ public class CollectionDTO {
 		this.statutLibelleDone = statutLibelleDone;
 		this.statutWorkflow = statutWorkflow;
 		this.date = (new LocalDate()).toString("yyyy-MM-dd");
-		//this.date = date;
 	}
 
 }

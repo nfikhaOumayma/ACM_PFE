@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.dto.CalenderEventDTO;
-import com.example.demo.dto.LoanDTO;
 import com.example.demo.entity.CalendarEvent;
 
 @Repository
@@ -21,11 +20,5 @@ public interface CalendarEventRepository extends JpaRepository<CalendarEvent, Lo
 			+ "INNER JOIN User u ON ce.username = u.username")
 	List<CalenderEventDTO> getCalendarEvents();
 
-	@Query(value = "SELECT new com.example.demo.dto.LoanDTO(l.accountNumberExtern, "
-            + "statut , l.portfolioDescription, l.applyAmountTotal,"
-            + "l.applyDate, l.approvelAmount, l.apr, l.branchDescription, l.loanApplicationStatus,"
-            + "l.productDescription, l.loanReasonDescription, l.idIbLoan ,GETDATE())"
-            + " FROM Loan l")
 	
-    List<LoanDTO> loanIndex();
 }

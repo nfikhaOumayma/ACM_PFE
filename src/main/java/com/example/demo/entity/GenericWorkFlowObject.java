@@ -34,9 +34,9 @@ public class GenericWorkFlowObject {
 	@Column(name = "NAME")
 	private String name;
 
-	/** The generic work flow objects. 
+	/** The generic work flow objects. */
 	@OneToMany(mappedBy = "genericWorkFlowObject")
 	@JsonIgnore
-	private Set<Item> genericWorkFlowObjects = new HashSet<>();*/
+	private Set<Item> genericWorkFlowObjects = new HashSet<>();
 }
 

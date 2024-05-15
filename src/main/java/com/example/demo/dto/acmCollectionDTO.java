@@ -35,6 +35,7 @@ public class acmCollectionDTO {
 			this.branchDescription = branchDescription;
 			this.owner = owner;
 			this.statut = statut;
-			this.date = (new LocalDate()).toString("yyyy-MM-dd");		}
+			this.date = (new LocalDate()).toString("yyyy-MM-dd");
+			}
 	    
 }

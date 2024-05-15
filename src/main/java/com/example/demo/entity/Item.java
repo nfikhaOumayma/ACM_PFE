@@ -30,11 +30,14 @@ public class Item  implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_ACM_ITEM", unique = true, nullable = false)
 	private Long id;
-
-	/** The generic work flow object.
+	
+	@Column(name = "ELEMENT_ID")
+	private Long elementId;
+	
+	/** The generic work flow object.*/
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_ACM_GENERIC_WORKFLOW_OBJECT")
-	private GenericWorkFlowObject genericWorkFlowObject; */
+	private GenericWorkFlowObject genericWorkFlowObject; 
 
 	/** The branches. */
 	@Column(name = "ACCESS_BRANCHE")
@@ -83,4 +86,8 @@ public class Item  implements Serializable {
 	/** The group owner. */
 	@Column(name = "GROUP_OWNER")
 	private String groupOwner;
+	
+	/** The group owner. */
+	@Column(name = "Category")
+	private String category;
 }
