@@ -7,11 +7,15 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,6 +43,12 @@ public class Loan implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_ACM_LOAN", unique = true, nullable = false)
 	private Long idLoan;
+	
+	/** The customer. */
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "ID_ACM_CUSTOMER")
+	private Customer customer;
+
 
 	/** The id loan extern. */
 	@Column(name = "ID_LOAN_EXTERN", nullable = false)
@@ -76,13 +86,13 @@ public class Loan implements Serializable {
 	@Column(name = "PRODUCT_ID")
 	private Integer productId;
 
-	/** The id customer. */
+	//The id customer. 
 	@Column(name = "CUSTOMER_ID")
 	private Long customerId;
 
-	/** The customer name. */
+	/** The customer name. 
 	@Column(name = "CUSTOMER_NAME")
-	private String customerName;
+	private String customerName;*/
 
 	/** The applyamounttotal. */
 	@Column(name = "APPLY_AMOUNT_TOTAL")
@@ -319,8 +329,7 @@ public class Loan implements Serializable {
 	/** The ready for disb. */
 	@Column(name = "READY_FOR_DISB")
 	private Integer readyForDisb;
-
-
+	
 	/** The token. */
 	@Transient
 	private String token;

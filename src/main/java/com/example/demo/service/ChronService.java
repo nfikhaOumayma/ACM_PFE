@@ -34,9 +34,16 @@ public class ChronService {
 	@Scheduled(fixedRate = 24 * 60 * 60 * 1000) // 24 h
 	public void startChronometer() {
 		System.out.println("Scheduled task started at: " + LocalDateTime.now());
+		//loanService.Indexation("totalloans", () -> loanrep.loanIndex());
+		
+		loanService.Indexation("loans", () -> loanrep.loanIndex());
 
-		loanService.Indexation("totalloans", () -> loanrep.loanIndex());
-		loanService.Indexation("acmcollection", () -> collectionrep.getCollections());
 		loanService.Indexation("acmclenderevent", () -> calenderEvent.getCalendarEvents());
+		
+		loanService.Indexation("acmcollection", () -> collectionrep.getCollections());
+		
+		loanService.Indexation("customer_collection_details", () -> collectionrep.CustomerCollectionDetails());
+		
+		loanService.Indexation("legal_collection_details_index", () -> collectionrep.LegalCollectionDetails());
 	}
 }

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.rep.LoanRepository;
+import com.example.demo.rep.*;
 import com.example.demo.service.ACMLoanService;
 
 @RestController
@@ -15,6 +15,7 @@ public class ACMLoanController {
 @Autowired
 public ACMLoanService s;
 public LoanRepository rep;
+
     
 
     @GetMapping("/user")
