@@ -18,21 +18,21 @@ public class ElasticSearchConfig extends AbstractElasticsearchConfiguration {
 
 	@Value("${elasticsearch.url}")
 	public String elasticsearchUrl;
-	
+
 	@Bean
 	@Override
-	public RestHighLevelClient elasticsearchClient(){
-		final ClientConfiguration config = ClientConfiguration.builder()
-		.connectedTo(elasticsearchUrl)
-		.build();
+	public RestHighLevelClient elasticsearchClient() {
+
+		final ClientConfiguration config =
+				ClientConfiguration.builder().connectedTo(elasticsearchUrl).build();
 		return RestClients.create(config).rest();
 	}
-	
+
 	@Bean
-    public ElasticsearchRestTemplate elasticsearchRestTemplate() {
-        final ClientConfiguration configuration = ClientConfiguration.builder()
-                .connectedTo(elasticsearchUrl)
-                .build();
-        return new ElasticsearchRestTemplate(RestClients.create(configuration).rest());
-    }
+	public ElasticsearchRestTemplate elasticsearchRestTemplate() {
+
+		final ClientConfiguration configuration =
+				ClientConfiguration.builder().connectedTo(elasticsearchUrl).build();
+		return new ElasticsearchRestTemplate(RestClients.create(configuration).rest());
+	}
 }

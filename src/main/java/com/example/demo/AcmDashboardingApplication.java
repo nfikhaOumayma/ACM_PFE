@@ -15,6 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class AcmDashboardingApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(AcmDashboardingApplication.class, args);
 	}
 }

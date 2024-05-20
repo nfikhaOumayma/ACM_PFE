@@ -36,6 +36,8 @@ public class CollectionDTO {
 	
 	@Field(type = FieldType.Date)
 	private Date firstUnpaidInstallment;
+	
+	private BigDecimal Paid_Amount;
 
 	private BigDecimal unpaidAmount;
 
@@ -82,7 +84,7 @@ public class CollectionDTO {
 
 	public CollectionDTO(Long id, String typeCustomer, Long customerIdExtern, String accountNumber,
 			String productDescription, String customerName, String branchDescription,
-			BigDecimal amount, String loanOfficer, Date firstUnpaidInstallment,
+			BigDecimal amount, String loanOfficer, Date firstUnpaidInstallment, BigDecimal Paid_Amount,
 			BigDecimal unpaidAmount, Integer lateDays, Integer numberOfUnpaidInstallment,
 			Integer status, Long idAcmCollectionStep, Long productId, Long branchId,
 			String currencySymbol, Integer currencyDecimalPlaces, Integer idLoanExtern,
@@ -102,6 +104,7 @@ public class CollectionDTO {
 		this.amount = amount;
 		this.loanOfficer = loanOfficer;
 		this.firstUnpaidInstallment = firstUnpaidInstallment;
+		this.Paid_Amount=Paid_Amount;
 		this.unpaidAmount = unpaidAmount;
 		this.lateDays = lateDays;
 		this.numberOfUnpaidInstallment = numberOfUnpaidInstallment;

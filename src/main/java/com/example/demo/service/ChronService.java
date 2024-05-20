@@ -12,38 +12,38 @@ import com.example.demo.rep.LoanRepository;
 @Component
 public class ChronService {
 
-	private final ACMLoanService loanService;
+	private final IACMService acmService;
 	private final LoanRepository loanrep;
 	private final CollectionRepository collectionrep;
 	private final CalendarEventRepository calenderEvent;
 
-
- 
-	public ChronService(ACMLoanService loanService, LoanRepository loanrep,
+	public ChronService(IACMService acmService, LoanRepository loanrep,
 			CollectionRepository collectionrep, CalendarEventRepository calenderEvent) {
 
 		super();
-		this.loanService = loanService;
+		this.acmService = acmService;
 		this.loanrep = loanrep;
 		this.collectionrep = collectionrep;
 		this.calenderEvent = calenderEvent;
 	}
 
-
-
 	@Scheduled(fixedRate = 24 * 60 * 60 * 1000) // 24 h
 	public void startChronometer() {
-		System.out.println("Scheduled task started at: " + LocalDateTime.now());
-		//loanService.Indexation("totalloans", () -> loanrep.loanIndex());
-		
-		loanService.Indexation("loans", () -> loanrep.loanIndex());
 
-		loanService.Indexation("acmclenderevent", () -> calenderEvent.getCalendarEvents());
+		System.out.println("Scheduled task started at: " + LocalDateTime.now());
+
+		acmService.indexObjects(loanrep.loanIndex(), "loans");
+		acmService.indexObjects(collectionrep.getCollections(), "acmcollection");
+		acmService.indexObjects(calenderEvent.getCalendarEvents(), "acmclenderevent");
+		acmService.indexObjects(collectionrep.CustomerCollectionDetails(), "customer_collection_details");
+		acmService.indexObjects(collectionrep.LegalCollectionDetails(),"legal_collection_details_index");
+		System.out.println("Indexing job executed successfully.");
+
+		// acmService.IndexTotalLoan();
+		// acmService.Indexation("loans", () -> loanrep.loanIndex());
+
+
 		
-		loanService.Indexation("acmcollection", () -> collectionrep.getCollections());
-		
-		loanService.Indexation("customer_collection_details", () -> collectionrep.CustomerCollectionDetails());
-		
-		loanService.Indexation("legal_collection_details_index", () -> collectionrep.LegalCollectionDetails());
 	}
+
 }

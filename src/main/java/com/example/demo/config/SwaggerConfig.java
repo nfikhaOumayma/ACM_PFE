@@ -34,7 +34,6 @@ import springfox.documentation.spring.web.plugins.WebFluxRequestHandlerProvider;
 import springfox.documentation.spring.web.plugins.WebMvcRequestHandlerProvider;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-
 @EnableWebMvc
 @EnableSwagger2
 @Configuration
@@ -43,8 +42,10 @@ public class SwaggerConfig {
 	public Docket api() throws IOException, XmlPullParserException {
 
 		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis((java.util.function.Predicate<RequestHandler>) RequestHandlerSelectors.basePackage("com.example.demo.controller"))
-				.paths((java.util.function.Predicate<String>) PathSelectors.any()).build().apiInfo(apiInfo());
+				.apis((java.util.function.Predicate<RequestHandler>) RequestHandlerSelectors
+						.basePackage("com.example.demo.controller"))
+				.paths((java.util.function.Predicate<String>) PathSelectors.any()).build()
+				.apiInfo(apiInfo());
 	}
 
 	/**
@@ -64,47 +65,54 @@ public class SwaggerConfig {
 		}
 		else {
 			// Packaged artifacts contain a META-INF/maven/${groupId}/${artifactId}/pom.properties
-			model = mavenXpp3Reader
-					.read(new InputStreamReader(AcmDashboardingApplication.class.getResourceAsStream(
-							"/Elasticsearch_ACM/pom.xml")));
+			model = mavenXpp3Reader.read(new InputStreamReader(AcmDashboardingApplication.class
+					.getResourceAsStream("/Elasticsearch_ACM/pom.xml")));
 		}
-		return new ApiInfo(" Dashboard for Advanced Credit Management (ACM)", model.getDescription(),
-				model.getParent().getVersion(), "Terms of TALYS",
+		return new ApiInfo(" Dashboard for Advanced Credit Management (ACM)",
+				model.getDescription(), model.getParent().getVersion(), "Terms of TALYS",
 				new Contact("ACM", "www.talys-consulting.com", "info@talys-consulting.com"),
 				"License of API", "www.talys-consulting.com", Collections.emptyList());
 	}
+
 	@Bean
 	public static BeanPostProcessor springfoxHandlerProviderBeanPostProcessor() {
-	    return new BeanPostProcessor() {
 
-	        @Override
-	        public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-	            if (bean instanceof WebMvcRequestHandlerProvider || bean instanceof WebFluxRequestHandlerProvider) {
-	                customizeSpringfoxHandlerMappings(getHandlerMappings(bean));
-	            }
-	            return bean;
-	        }
+		return new BeanPostProcessor() {
 
-	        private <T extends RequestMappingInfoHandlerMapping> void customizeSpringfoxHandlerMappings(List<T> mappings) {
-	            List<T> copy = mappings.stream()
-	                    .filter(mapping -> mapping.getPatternParser() == null)
-	                    .collect(Collectors.toList());
-	            mappings.clear();
-	            mappings.addAll(copy);
-	        }
+			@Override
+			public Object postProcessAfterInitialization(Object bean, String beanName)
+					throws BeansException {
 
-	        @SuppressWarnings("unchecked")
-	        private List<RequestMappingInfoHandlerMapping> getHandlerMappings(Object bean) {
-	            try {
-	                Field field = ReflectionUtils.findField(bean.getClass(), "handlerMappings");
-	                field.setAccessible(true);
-	                return (List<RequestMappingInfoHandlerMapping>) field.get(bean);
-	            } catch (IllegalArgumentException | IllegalAccessException e) {
-	                throw new IllegalStateException(e);
-	            }
-	        }
-	    };
+				if (bean instanceof WebMvcRequestHandlerProvider
+						|| bean instanceof WebFluxRequestHandlerProvider) {
+					customizeSpringfoxHandlerMappings(getHandlerMappings(bean));
+				}
+				return bean;
+			}
+
+			private <T extends RequestMappingInfoHandlerMapping> void customizeSpringfoxHandlerMappings(
+					List<T> mappings) {
+
+				List<T> copy =
+						mappings.stream().filter(mapping -> mapping.getPatternParser() == null)
+								.collect(Collectors.toList());
+				mappings.clear();
+				mappings.addAll(copy);
+			}
+
+			@SuppressWarnings("unchecked")
+			private List<RequestMappingInfoHandlerMapping> getHandlerMappings(Object bean) {
+
+				try {
+					Field field = ReflectionUtils.findField(bean.getClass(), "handlerMappings");
+					field.setAccessible(true);
+					return (List<RequestMappingInfoHandlerMapping>) field.get(bean);
+				}
+				catch (IllegalArgumentException | IllegalAccessException e) {
+					throw new IllegalStateException(e);
+				}
+			}
+		};
 	}
-
 
 }
