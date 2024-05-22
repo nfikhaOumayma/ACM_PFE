@@ -5,6 +5,13 @@ import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.IndexOperations;
 import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.demo.entity.*;
+
+import com.example.demo.rep.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -12,7 +19,11 @@ public class ACMServiceImpl implements IACMService {
 
 	@Autowired
 	private ElasticsearchRestTemplate elasticsearchRestTemplate;
-
+	
+	@Autowired
+	UserRepository  userRep;
+	
+	
 	@Override
 	public <T> void indexObjects(List<T> newData, String indexName) {
 
@@ -30,6 +41,19 @@ public class ACMServiceImpl implements IACMService {
 			System.out.println(
 					indexName + " updated with new data : " + newData.size() + " Records added");
 		}
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<User> findBycollaborateur(String responsableId) {
+
+		List<User> listCollaborateur= userRep.findByResponsableId(responsableId);
+		System.out.println("voila la liste des utilisateur qui ont comme responsable"+responsableId);
+		 for (User user : listCollaborateur) {
+		        System.out.println(user);
+		    }
+		return listCollaborateur;
+		
 	}
 	
 	/*@Autowired

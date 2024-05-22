@@ -149,6 +149,26 @@ public class User implements Serializable {
 	@Column(name = "PWD_EXPIRY_DATE")
 	private Date pwdExpiryDate;
 
+	@Override
+	public String toString() {
+
+		return "User [username=" + username + ", accountPortfolioId=" + accountPortfolioId
+				+ ", responsableId=" + responsableId + ", userExternId=" + userExternId
+				+ ", userProfilId=" + userProfilId + ", password=" + password + ", nom=" + nom
+				+ ", prenom=" + prenom + ", email=" + email + ", branchID=" + branchID
+				+ ", branchName=" + branchName + ", branchDescription=" + branchDescription
+				+ ", customerId=" + customerId + ", accessBranches=" + accessBranches
+				+ ", temporaryPwd=" + temporaryPwd + ", category=" + category + ", defaultLang="
+				+ defaultLang + ", token=" + token + ", portfolioName=" + portfolioName
+				+ ", hiringDate=" + hiringDate + ", resigningDate=" + resigningDate
+				+ ", temporaryResponsable=" + temporaryResponsable + ", oldResponsibleId="
+				+ oldResponsibleId + ", oldResponsableName=" + oldResponsableName + ", employeeId="
+				+ employeeId + ", failedAttempts=" + failedAttempts + ", pwdExpiryDate="
+				+ pwdExpiryDate + "]";
+	}
+	
+	
+
 	/** The acm conditionnal approves. 
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)
 	private Set<AcmConditionnalApprove> acmConditionnalApproves = new HashSet<>();*/

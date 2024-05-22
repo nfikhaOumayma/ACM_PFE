@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CalenderEventDTO {
-
+	private Long id;
 	private String libelleEvent;
 	private String statut;
 
@@ -30,9 +30,9 @@ public class CalenderEventDTO {
 	private String branchDescription;
 	private String date;
 
-	public CalenderEventDTO(String libelleEvent, String statut, Date dateLastUpdate, Date dateFin,
+	public CalenderEventDTO(Long id,String libelleEvent, String statut, Date dateLastUpdate, Date dateFin,
 			int retardJour, String category, String owner, String branchDescription, Date date) {
-
+		this.id=id;
 		this.libelleEvent = libelleEvent;
 		this.statut = statut;
 		this.dateLastUpdate = dateLastUpdate;

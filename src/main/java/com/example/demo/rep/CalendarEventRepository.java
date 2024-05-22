@@ -11,7 +11,9 @@ import com.example.demo.entity.CalendarEvent;
 @Repository
 public interface CalendarEventRepository extends JpaRepository<CalendarEvent, Long> {
 
-	@Query("SELECT NEW com.example.demo.dto.CalenderEventDTO( " + "ce.libelleEvent, "
+	@Query("SELECT NEW com.example.demo.dto.CalenderEventDTO( "
+			+"ce.id, "
+			+ "ce.libelleEvent, "
 			+ "ce.statut, " + "ce.dateLastUpdate, " + "ce.dateFin, " + "CASE ce.statut "
 			+ "   WHEN 'CLOSED' THEN CASE WHEN DATEDIFF(DAY, ce.dateFin, ce.dateLastUpdate) < 0 THEN 0 ELSE COALESCE(DATEDIFF(DAY, ce.dateFin, ce.dateLastUpdate), 0) END "
 			+ "   WHEN 'NEW' THEN CASE WHEN DATEDIFF(DAY, ce.dateFin, CURRENT_DATE()) < 0 THEN 0 ELSE COALESCE(DATEDIFF(DAY, ce.dateFin, CURRENT_DATE()), 0) END "

@@ -47,6 +47,7 @@ public interface CollectionRepository extends JpaRepository<AcmCollection, Long>
 	List<CollectionDTO> getCollections();
 
 	@Query(value = "SELECT new com.example.demo.dto.CustomerCollectionDetailsDTO( " 
+			+ "	   c.id, "
 			+ "    c.customerName, "
 			+ "    c.productDescription, " 
 			+ "    c.statutLibelle, " 

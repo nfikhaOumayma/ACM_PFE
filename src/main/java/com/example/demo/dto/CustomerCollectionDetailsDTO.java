@@ -15,6 +15,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerCollectionDetailsDTO {
+	@Field(type = FieldType.Long)
+    private Long id;
 	
     @Field(type = FieldType.Text)
     private String customerName;
@@ -40,10 +42,10 @@ public class CustomerCollectionDetailsDTO {
  
     private String date;
 
-	public CustomerCollectionDetailsDTO(String customerName, String productDescription,
+	public CustomerCollectionDetailsDTO(Long id,String customerName, String productDescription,
 			String etape_encours, String portefeuille, String branchDescription, String owner,
 			String statut,  Date date) {
-
+		this.id=id;
 		this.customerName = customerName;
 		this.productDescription = productDescription;
 		this.etape_encours = etape_encours;

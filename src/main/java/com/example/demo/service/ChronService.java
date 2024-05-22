@@ -38,7 +38,10 @@ public class ChronService {
 		acmService.indexObjects(collectionrep.CustomerCollectionDetails(), "customer_collection_details");
 		acmService.indexObjects(collectionrep.LegalCollectionDetails(),"legal_collection_details_index");
 		System.out.println("Indexing job executed successfully.");
-
+	
+		acmService.findBycollaborateur("00153");
+		
+		
 		// acmService.IndexTotalLoan();
 		// acmService.Indexation("loans", () -> loanrep.loanIndex());
 
